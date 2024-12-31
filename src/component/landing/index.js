@@ -1,5 +1,7 @@
 import axios from "axios";
 import React from "react";
+import Navbar from "../navbar/navbar";
+import Footer from "./footer";
 
 // Component
 class LandingPage extends React.Component {
@@ -19,6 +21,8 @@ class LandingPage extends React.Component {
     })
     .then(response => {
       const products = response.data.data;
+      console.log(response.config);
+      
       this.setState({ products });
     })
     .catch(e => {
@@ -41,37 +45,7 @@ class LandingPage extends React.Component {
   render() {
     return(
       <>
-        {/* Start Navbar */}
-        <div>
-          <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container">
-              <a className="navbar-brand" href="#">
-                Toserba
-              </a>
-              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Products</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Orders</a>
-                  </li>
-                </ul>
-                <form className="d-flex" role="search">
-                  <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button className="btn" type="submit"><i class="bi bi-search"></i></button>
-                </form>
-              </div>
-            </div>
-          </nav>
-        </div>
-        {/* End Navbar */}
+        <Navbar />
 
         {/* Start Body */}
         <div className="container py-3">
@@ -124,7 +98,7 @@ class LandingPage extends React.Component {
                       <div>
                         <div className="col">
                           <p id="price-before" className="card-text fw-semibold text-secondary">
-                            <del>{this.currencyFormat(i.price)}</del> <span class="badge text-bg-secondary">{i.discount}%</span>
+                            <del>{this.currencyFormat(i.price)}</del> <span className="badge text-bg-secondary">{i.discount}%</span>
                           </p>
                         </div>
                         <div className="col">
@@ -158,7 +132,7 @@ class LandingPage extends React.Component {
                         <div>
                           <div className="col">
                             <p id="price-before" className="card-text fw-semibold text-secondary">
-                              <del>{this.currencyFormat(i.price)}</del> <span class="badge text-bg-secondary">{i.discount}%</span>
+                              <del>{this.currencyFormat(i.price)}</del> <span className="badge text-bg-secondary">{i.discount}%</span>
                             </p>
                           </div>
                           <div className="col">
@@ -186,15 +160,7 @@ class LandingPage extends React.Component {
         </div>
         {/* End Body */}
 
-        {/* Start Footer */}
-        <div className="container mb-3">
-          <footer className="text-center">
-            <small>
-              Copyright &copy; ARS Research Team. All Rights Reserved.
-            </small>
-          </footer>
-        </div>
-        {/* End Footer */}
+        <Footer />
       </>
     )
   }
